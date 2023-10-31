@@ -7,7 +7,7 @@
 {% block content %}
 <div class="join-background">
   
-    {% if games %}
+  {% if games %}
     <div class="user-games">
       <h1>Created Games</h1>
       <div class="overflow-auto" style="height:100%;">
@@ -65,7 +65,6 @@
                     </div>
                   
                   {%endif%}
-
                     <div class="dropdown show" style="float:right">
                         <a class="btn btn-secondary dropdown-toggle participants" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Participants
@@ -94,8 +93,7 @@
         {% endfor %}
         </div>
       </div>
-      {%endif%}
-      {%if games%}
+      
       <div class="join-formatting">
       <div class="join-search">
         <form action="{{url_for('main.joingame',game_id = 0, user_id = 0)}}" method="POST">
@@ -148,8 +146,6 @@
 
       </div>
     </div>
-
-
     {% endif %}
 </div>
 {% endblock %}

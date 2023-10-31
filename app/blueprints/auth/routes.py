@@ -49,17 +49,20 @@ def signup():
             'snell': 'False',
             'scorer': 'False'
         }
+        user_check = User.query.filter_by(email=form.email.data).first()
+        if user_check:
+            return render_template('signup.html', form = form)
+        else:
+            new_user = User()
+            
+            
+            new_user.from_dict(user_data)
+            new_user.from_stats(stat_data)
+            new_user.from_achieve(achievement_data)
 
-        new_user = User()
-        
-        
-        new_user.from_dict(user_data)
-        new_user.from_stats(stat_data)
-        new_user.from_achieve(achievement_data)
-
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for('auth.login'))
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for('auth.login'))
     else:
         return render_template('signup.html', form = form)
 
